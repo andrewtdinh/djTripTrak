@@ -1,7 +1,10 @@
 <h1>My Trips</h1>
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
-  <p><a href="{% url 'logout' %}">Logout</a></p>
+  <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
 {% else %}
   <p>Please <a href="{% url 'login' %}">login</a></p>
 {% endif %}

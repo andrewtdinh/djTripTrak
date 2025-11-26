@@ -129,6 +129,6 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Where the user goes after login if there was no 'next'
-LOGIN_REDIRECT_URL = 'trip-list'
+LOGIN_REDIRECT_URL = 'trips-list'
 
 

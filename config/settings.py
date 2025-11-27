@@ -135,4 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # Where the user goes after login if there was no 'next'
 LOGIN_REDIRECT_URL = 'trips-list'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
+
 

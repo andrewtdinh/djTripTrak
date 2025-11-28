@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from django.urls import reverse_lazy
 
 from .models import Trip, Note
@@ -25,6 +25,18 @@ class TripCreateView(CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
     
-    
+class TripDetailView(DetailView):
+    model = Trip
+
+    # right now we only details on the Trip and not the Notes, so we need the Notes data
+    # get_context_data is already defined, but, it won't have the Notes data
+    def get_context_data(self, **kwargs):
+        # Get context about the trip
+        context = super().get_context_data(**kwargs)
+        trip = context['object']
+        notes = trip.notes.all()
+        context['notes'] = notes
+        return context
+
 
 

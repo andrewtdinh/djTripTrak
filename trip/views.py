@@ -37,6 +37,11 @@ class TripDetailView(DetailView):
         notes = trip.notes.all()
         context['notes'] = notes
         return context
+    
+class NoteDetailView(DetailView):
+    model = Note
+
+    
 
 
 

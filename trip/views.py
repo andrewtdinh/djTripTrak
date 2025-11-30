@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from django.urls import reverse_lazy
 
 from .models import Trip, Note
@@ -41,7 +41,13 @@ class TripDetailView(DetailView):
 class NoteDetailView(DetailView):
     model = Note
 
-    
+class NoteListView(ListView):
+    model = Note
+    # override get_queryset from ListView
+    def get_queryset(self):
+        queryset = Note.objects.filter(trip__owner=self.request.user)
+        return queryset
+
 
 
 

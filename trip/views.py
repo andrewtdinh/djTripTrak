@@ -48,6 +48,16 @@ class NoteListView(ListView):
         queryset = Note.objects.filter(trip__owner=self.request.user)
         return queryset
 
+class NoteCreateView(CreateView):
+    model = Note
+    success_url = reverse_lazy('note-list')
+    fields = "__all__"
+
+    def get_form(self):
+        form = super(NoteCreateView, self).get_form()
+        trips = Trip.objects.filter(owner=self.request.user)
+        form.fields['trip'].queryset = trips
+        return form
 
 
 

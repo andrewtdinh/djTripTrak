@@ -78,13 +78,7 @@ class NoteDeleteView(DetailView):
 class TripUpdateView(UpdateView):
     model = Trip
     success_url = reverse_lazy('trips-list')
-    fields = "__all__"
-
-    def get_form(self):
-        form = super(TripUpdateView, self).get_form()
-        trips = Trip.objects.filter(owner=self.request.user)
-        form.fields['trip'].queryset = trips
-        return form
+    fields = ["city", "country", "start_date", "end_date"]
 
 class TripDeleteView(DetailView):
     model = Trip

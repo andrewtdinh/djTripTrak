@@ -70,5 +70,7 @@ class NoteUpdateView(UpdateView):
         form.fields['trip'].queryset = trips
         return form
 
-
-
+class NoteDeleteView(DetailView):
+    model = Note
+    success_url = reverse_lazy('note-list')
+    # no template needed. We just send a POST request there

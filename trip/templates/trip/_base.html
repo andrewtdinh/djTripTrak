@@ -30,9 +30,15 @@
             <div class="mt-auto w-full text-center flex md:flex-col justify-evenly py-2 md:pt-0">
                 <p class="">{{user.username}}</p>
                 <hr class="my-2">
-                <a class="underline" href="{% url 'logout' %}">
-                    Logout
-                </a>
+                <form action="{% url 'logout' %}" method="post" class="inline">
+                    {% csrf_token %}
+                    <button 
+                        type="submit"
+                        class="underline bg-transparent p-0 text-inherit cursor-pointer"
+                    >
+                        Logout
+                    </button>
+                </form>
             </div>
         </div>
         <div class="w-full md:w-full p-10 overflow-auto">
